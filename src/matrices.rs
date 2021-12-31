@@ -1,4 +1,4 @@
-use crate::vectors::Vec3;
+use crate::vectors::Vector3;
 
 #[derive(Debug, Clone, Copy)]
 pub struct Mat3 {
@@ -92,11 +92,11 @@ impl std::ops::Mul for Mat3 {
 	}
 }
 
-impl std::ops::Mul<Vec3> for Mat3 {
-	type Output = Vec3;
+impl std::ops::Mul<Vector3> for Mat3 {
+	type Output = Vector3;
 
-	fn mul(self, other: Vec3) -> Self::Output {
-		Vec3 { v: [
+	fn mul(self, other: Vector3) -> Self::Output {
+		Vector3 { v: [
 			self.m[0] * other.x() + self.m[1] * other.y() + self.m[2] * other.z(),
 			self.m[3] * other.x() + self.m[4] * other.y() + self.m[5] * other.z(),
 			self.m[6] * other.x() + self.m[7] * other.y() + self.m[8] * other.z()

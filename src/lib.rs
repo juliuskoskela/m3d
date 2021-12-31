@@ -1,82 +1,13 @@
 pub mod vectors;
-pub mod matrices;
-pub mod points;
 pub mod quaternion;
+
+pub mod points;
+pub mod utest_quaternion;
 
 #[cfg(test)]
 mod tests {
-	use crate::matrices::Mat3;
-	use crate::vectors::Vec3;
+	use crate::vectors::Vector3;
 	use crate::quaternion::Quaternion;
-
-	#[test]
-	fn test_mat3() {
-		let m1 = Mat3::new_from([
-			1.0, 2.0, 3.0,
-			4.0, 5.0, 6.0,
-			7.0, 8.0, 9.0
-		]);
-
-		let m2 = Mat3::new_from([
-			1.0, 4.0, 7.0,
-			2.0, 5.0, 8.0,
-			3.0, 6.0, 9.0
-		]);
-
-		let m3 = m1 * m2;
-		m3.print();
-
-		let v1 = Vec3::new(1.0, 2.0, 3.0);
-
-		print!("{}", v1);
-
-		let v2 = m1 * v1;
-
-		print!("{}", v2);
-	}
-
-	#[test]
-	// Unit test for Mat3::identity()
-	fn test_identity() {
-		let m1 = Mat3::identity();
-		let m2 = Mat3::identity();
-		assert!(m1 == m2);
-	}
-
-	#[test]
-	// Unit test for Mat3::mul()
-	fn test_mul() {
-		let m1 = Mat3::new_from([
-			1.0, 2.0, 3.0,
-			4.0, 5.0, 6.0,
-			7.0, 8.0, 9.0
-		]);
-
-		let m2 = Mat3::new_from([
-			1.0, 4.0, 7.0,
-			2.0, 5.0, 8.0,
-			3.0, 6.0, 9.0
-		]);
-
-		let m1xm2 = Mat3::new_from([
-			14.0, 32.0, 50.0,
-			32.0, 77.0, 122.0,
-			50.0, 122.0, 194.0,
-		]);
-
-		let m3 = m1 * m2;
-
-		m2.print();
-		assert!(m3 == m1xm2);
-
-		let m4 = m2.transpose();
-
-		m4.print();
-
-		let m5 = m4 * 0.5;
-
-		m5.print();
-	}
 
 	#[test]
 	fn test_quaternion_identity() {

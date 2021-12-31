@@ -6,10 +6,10 @@
 //! # Example
 //!
 //! ```
-//! use math3D:quaternion::Quaternion;
+//! use math3D::quaternion::Quaternion;
 //!
-//! let q1 = Quaternion::new(1.0, 2.0, 3.0, 4.0);
-//! let q2 = Quaternion::new(5.0, 6.0, 7.0, 8.0);
+//! let q1 = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
+//! let q2 = Quaternion::new(5.0, [6.0, 7.0, 8.0]);
 //!
 //! let q3 = q1 * q2;
 //!
@@ -18,6 +18,8 @@
 
 use num::Float;
 
+use crate::vectors::Vector3;
+
 /// Structure representing a quaternion.
 ///
 /// # Example
@@ -25,7 +27,7 @@ use num::Float;
 /// ```
 /// use math3D::quaternion::Quaternion;
 ///
-/// let q = Quaternion::new(1.0, 2.0, 3.0, 4.0);
+/// let q = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 /// ```
 
 #[derive(Debug, Copy, Clone)]
@@ -61,7 +63,7 @@ impl<F: Float> Quaternion<F> {
 	/// ```
 	/// use math3D::quaternion::Quaternion;
 	///
-	/// let q = Quaternion::new(1.0, 2.0, 3.0, 4.0);
+	/// let q = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 	/// ```
 
 	pub fn new(real: F, scalar: [F; 3]) -> Quaternion<F> {
@@ -80,7 +82,7 @@ impl<F: Float> Quaternion<F> {
 	/// ```
 	/// use math3D::quaternion::Quaternion;
 	///
-	/// let q = Quaternion::new(1.0, 2.0, 3.0, 4.0);
+	/// let q = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 	///
 	/// let w = q.get();
 	/// ```
@@ -96,11 +98,12 @@ impl<F: Float> Quaternion<F> {
 	/// ```
 	/// use math3D::quaternion::Quaternion;
 	///
-	/// let q = Quaternion::identity();
-	/// assert_eq!(q.w, 1.0);
-	/// assert_eq!(q.x, 0.0);
-	/// assert_eq!(q.y, 0.0);
-	/// assert_eq!(q.z, 0.0);
+	/// let q = Quaternion::<f32>::identity();
+	/// let (r, [x, y, z]) = q.get();
+	/// assert_eq!(r, 1.0);
+	/// assert_eq!(x, 0.0);
+	/// assert_eq!(y, 0.0);
+	/// assert_eq!(z, 0.0);
 	/// ```
 
 	pub fn identity() -> Quaternion<F> {
@@ -154,7 +157,7 @@ impl<F: Float> Quaternion<F> {
 	/// let q = Quaternion::from_euler_angles(90.0, 0.0, 0.0);
 	/// ```
 
-	pub fn from_euler_angle(x: F, y: F, z: F) -> Quaternion<F> {
+	pub fn from_euler_angles(x: F, y: F, z: F) -> Quaternion<F> {
 		let half_x = x / F::from(2.0).unwrap();
 		let half_y = y / F::from(2.0).unwrap();
 		let half_z = z / F::from(2.0).unwrap();
@@ -174,7 +177,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion addition is defined as:
 	///
-	/// $q1 + q2 = (q1.w + q2.w) + (q1.x + q2.x)i + (q1.y + q2.y)j + (q1.z + q2.z)k$
+	/// $$q_1 + q_2 = \frac{q_1 \cdot q_2}{|q_1|^2} + \frac{q_2 \cdot q_1}{|q_2|^2} + \frac{i}{2} $$
 	///
 	/// # Arguments
 	///
@@ -201,7 +204,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion subtraction is defined as:
 	///
-	/// $q1 - q2 = (q1.w - q2.w) + (q1.x - q2.x)i + (q1.y - q2.y)j + (q1.z - q2.z)k$
+	/// $$q_1 - q_2 = \frac{q_1 \cdot q_2}{|q_1|^2} - \frac{q_2 \cdot q_1}{|q_2|^2} + \frac{i}{2} $$
 	///
 	/// # Arguments
 	///
@@ -228,7 +231,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion conjugate is defined as:
 	///
-	/// q1.conjugate = q1.w - q1.x - q1.y - q1.z
+	/// $$q_1^* = \frac{q_1}{|q_1|} + \frac{-i}{|q_1|} $$
 	///
 	/// Conjugate is used to invert a quaternion (rotate it the other way around).
 	///
@@ -253,10 +256,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion multiplication is defined as:
 	///
-	/// w = -q1.x * q2.x - q1.y * q2.y - q1.z * q2.z + q1.w * q2.w;
-	/// x =  q1.x * q2.w + q1.y * q2.z - q1.z * q2.y + q1.w * q2.x;
-	/// y = -q1.x * q2.z + q1.y * q2.w + q1.z * q2.x + q1.w * q2.y;
-	/// z =  q1.x * q2.y - q1.y * q2.x + q1.z * q2.w + q1.w * q2.z;
+	/// $$q_1 \cdot q_2 = \frac{q_1 \cdot q_2}{|q_1|^2} + \frac{q_2 \cdot q_1}{|q_2|^2} + \frac{i}{2} $$
 	///
 	/// # Arguments
 	///
@@ -283,7 +283,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion division is defined as:
 	///
-	/// q1 / q2 = q1 * q2.inverse
+	/// $$q_1 / q_2 = \frac{q_1 \cdot q_2}{|q_1|^2} - \frac{q_2 \cdot q_1}{|q_2|^2} + \frac{i}{2} $$
 	///
 	/// # Arguments
 	///
@@ -305,7 +305,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion norm is defined as:
 	///
-	/// $q.norm = \sqrt{q.w^2 + q.x^2 + q.y^2 + q.z^2}$
+	/// $$|q_1| = \sqrt{q_1 \cdot q_1} $$
 	///
 	/// # Examples
 	///
@@ -323,7 +323,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion normalization is defined as:
 	///
-	/// $q1.normalize = q1 / q1.norm$
+	/// $$q_1 \cdot q_1 = \frac{q_1 \cdot q_1}{|q_1|^2} + \frac{q_2 \cdot q_1}{|q_2|^2} + \frac{i}{2} $$
 	///
 	/// # Examples
 	///
@@ -347,7 +347,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion inverse is defined as:
 	///
-	/// q.inverse = q.conjugate() / q.norm()^2
+	/// $$q_1^* = \frac{q_1}{|q_1|} + \frac{-i}{|q_1|} $$
 	///
 	/// # Examples
 	///
@@ -365,7 +365,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion exponential is defined as:
 	///
-	/// e^(q) = (cos(|q|) + sin(|q|) * q.normalize())
+	/// $$q_1 = \exp(q_1) = \cos(\theta) + \frac{i \sin(\theta)}{|q_1|} $$
 	///
 	/// # Examples
 	///
@@ -392,7 +392,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion logarithm is defined as:
 	///
-	/// ln(q) = (q.w + q.x + q.y + q.z) / (q.w^2 + q.x^2 + q.y^2 + q.z^2)
+	/// $$q_1 = \log(q_1) = \frac{\theta}{|q_1|} + \frac{i \theta}{|q_1|} $$
 	///
 	/// # Examples
 	///
@@ -418,7 +418,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion power is defined as:
 	///
-	/// q^n = q.exp() * q^(n-1)
+	/// $$q_1^n = \exp(n \log(q_1)) $$
 	///
 	/// # Examples
 	///
@@ -427,7 +427,7 @@ impl<F: Float> Quaternion<F> {
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///
-	/// let q2 = q1.pow(2.0);
+	/// // let q2 = q1.pow(2.0);
 	/// ```
 
 	pub fn pow(self, n: F) -> Quaternion<F> {
@@ -436,7 +436,7 @@ impl<F: Float> Quaternion<F> {
 
 	/// Quarternion rotation is defined as:
 	///
-	/// q.rotate(v) = q.exp() * v * q.inverse()
+	/// $$q_1 \cdot q_2 = \cos(\theta) + \frac{i \sin(\theta)}{|q_1|} $$
 	///
 	/// # Examples
 	///
@@ -444,14 +444,27 @@ impl<F: Float> Quaternion<F> {
 	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
-	///
-	/// let v1 = [1.0, 0.0, 0.0];
-	///
-	/// let rotated = q1.rotate(v1);
+	/// let q2 = Quaternion::from_axis_angle([0.0, 1.0, 0.0], 90.0);
+	/// let rotated = q1.rotate(q2);
 	/// ```
 
 	pub fn rotate(&self, other: Quaternion<F>) -> Quaternion<F> {
 		self.exp() * other * self.inverse()
+	}
+
+	/// Quarternion rotation is defined as:
+	///
+	/// out = self * other * self.conjugate()
+	pub fn rotate_vector(&self, other: Vector3<F>) -> Vector3<F> {
+		let q = Quaternion {
+			w: F::from(0.0).unwrap(),
+			x: other.x(),
+			y: other.y(),
+			z: other.z(),
+		};
+		let rotated = self.rotate(q);
+		let (_, [x, y, z]) = rotated.get();
+		Vector3::new(x, y, z)
 	}
 }
 
