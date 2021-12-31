@@ -80,8 +80,8 @@ mod tests {
 
 	#[test]
 	fn test_quaternion_identity() {
-		let q1 = Quaternion::identity();
-		let q2 = Quaternion::identity();
+		let q1 = Quaternion::<f32>::identity();
+		let q2 = Quaternion::<f32>::identity();
 		assert!(q1 == q2);
 	}
 

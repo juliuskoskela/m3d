@@ -3,10 +3,23 @@ pub struct Vec3 {
 }
 
 impl Vec3 {
+
+	/// Constructor
     pub fn new(x: f32, y: f32, z: f32) -> Vec3 {
         Vec3 { v: [x, y, z] }
     }
 
+	/// Get inner array
+	pub fn get(&self) -> &[f32; 3] {
+		&self.v
+	}
+
+	/// Get the value of x component.
+	///
+	/// # Examples
+	///
+	/// ```
+	/// use 3D:vectors::Vec3;
     pub fn x(&self) -> f32 {
         self.v[0]
     }

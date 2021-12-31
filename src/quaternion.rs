@@ -1,12 +1,51 @@
+//! # Quaternion
+//!
+//! Quaternion is a 4-dimensional vector.
+//! It is used to represent rotations and rotational motion.
+//!
+//! # Example
+//!
+//! ```
+//! use math3D:quaternion::Quaternion;
+//!
+//! let q1 = Quaternion::new(1.0, 2.0, 3.0, 4.0);
+//! let q2 = Quaternion::new(5.0, 6.0, 7.0, 8.0);
+//!
+//! let q3 = q1 * q2;
+//!
+//! println!("{}", q3);
+//! ```
+
+use num::Float;
+
+/// Structure representing a quaternion.
+///
+/// # Example
+///
+/// ```
+/// use math3D::quaternion::Quaternion;
+///
+/// let q = Quaternion::new(1.0, 2.0, 3.0, 4.0);
+/// ```
+
 #[derive(Debug, Copy, Clone)]
-pub struct Quaternion {
-	w: f32,
-	x: f32,
-	y: f32,
-	z: f32,
+pub struct Quaternion<F: Float>
+{
+
+	/// Real part of the quaternion.
+	w: F,
+
+	/// Scalar i of the quaternion.
+	x: F,
+
+	/// Scalar j of the quaternion.
+	y: F,
+
+	/// Scalar k of the quaternion.
+	z: F,
 }
 
-impl Quaternion {
+impl<F: Float> Quaternion<F> {
 
 	/// Creates a new quaternion from the given components.
 	///
@@ -20,12 +59,12 @@ impl Quaternion {
 	/// # Example
 	///
 	/// ```
-	/// use quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q = Quaternion::new(1.0, 2.0, 3.0, 4.0);
 	/// ```
 
-	pub fn new(real: f32, scalar: [f32; 3]) -> Quaternion {
+	pub fn new(real: F, scalar: [F; 3]) -> Quaternion<F> {
 		Quaternion {
 			w: real,
 			x: scalar[0],
@@ -39,14 +78,14 @@ impl Quaternion {
 	/// # Example
 	///
 	/// ```
-	/// use quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q = Quaternion::new(1.0, 2.0, 3.0, 4.0);
 	///
 	/// let w = q.get();
 	/// ```
 
-	pub fn get(&self) -> (f32, [f32; 3]) {
+	pub fn get(&self) -> (F, [F; 3]) {
 		(self.w, [self.x, self.y, self.z])
 	}
 
@@ -55,7 +94,7 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q = Quaternion::identity();
 	/// assert_eq!(q.w, 1.0);
@@ -64,12 +103,12 @@ impl Quaternion {
 	/// assert_eq!(q.z, 0.0);
 	/// ```
 
-	pub fn identity() -> Quaternion {
+	pub fn identity() -> Quaternion<F> {
 		Quaternion {
-			w: 1.0,
-			x: 0.0,
-			y: 0.0,
-			z: 0.0,
+			w: F::from(1.0).unwrap(),
+			x: F::from(0.0).unwrap(),
+			y: F::from(0.0).unwrap(),
+			z: F::from(0.0).unwrap(),
 		}
 	}
 
@@ -83,13 +122,13 @@ impl Quaternion {
 	/// # Example
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	/// ```
 
-	pub fn from_axis_angle(axis: [f32; 3], angle: f32) -> Quaternion {
-		let half_angle = angle / 2.0;
+	pub fn from_axis_angle(axis: [F; 3], angle: F) -> Quaternion<F> {
+		let half_angle = angle / F::from(2.0).unwrap();
 		let sin_half_angle = (half_angle).sin();
 		Quaternion {
 			w: (half_angle).cos(),
@@ -110,15 +149,15 @@ impl Quaternion {
 	/// # Example
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q = Quaternion::from_euler_angles(90.0, 0.0, 0.0);
 	/// ```
 
-	pub fn from_euler_angle(x: f32, y: f32, z: f32) -> Quaternion {
-		let half_x = x / 2.0;
-		let half_y = y / 2.0;
-		let half_z = z / 2.0;
+	pub fn from_euler_angle(x: F, y: F, z: F) -> Quaternion<F> {
+		let half_x = x / F::from(2.0).unwrap();
+		let half_y = y / F::from(2.0).unwrap();
+		let half_z = z / F::from(2.0).unwrap();
 		let sin_half_x = half_x.sin();
 		let sin_half_y = half_y.sin();
 		let sin_half_z = half_z.sin();
@@ -144,14 +183,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	/// let q2 = Quaternion::from_axis_angle([0.0, 1.0, 0.0], 90.0);
 	/// let q3 = q1 + q2;
 	/// ```
 
-	pub fn sum(self, other: Quaternion) -> Quaternion {
+	pub fn sum(self, other: Quaternion<F>) -> Quaternion<F> {
 		Quaternion {
 			w: self.w + other.w,
 			x: self.x + other.x,
@@ -171,14 +210,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	/// let q2 = Quaternion::from_axis_angle([0.0, 1.0, 0.0], 90.0);
 	/// let q3 = q1 - q2;
 	/// ```
 
-	pub fn difference(self, other: Quaternion) -> Quaternion {
+	pub fn difference(self, other: Quaternion<F>) -> Quaternion<F> {
 		Quaternion {
 			w: self.w - other.w,
 			x: self.x - other.x,
@@ -196,14 +235,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	/// let q2 = q1.conjugate();
 	/// ```
 
 
-	pub fn conjugate(&self) -> Quaternion {
+	pub fn conjugate(&self) -> Quaternion<F> {
 		Quaternion {
 			w: self.w,
 			x: -self.x,
@@ -226,14 +265,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	/// let q2 = Quaternion::from_axis_angle([0.0, 1.0, 0.0], 90.0);
 	/// let q3 = q1 * q2;
 	/// ```
 
-	pub fn product(self, other: Quaternion) -> Quaternion {
+	pub fn product(self, other: Quaternion<F>) -> Quaternion<F> {
 		Quaternion {
 			w: -self.x * other.x - self.y * other.y - self.z * other.z + self.w * other.w,
 			x:  self.x * other.w + self.y * other.z - self.z * other.y + self.w * other.x,
@@ -253,14 +292,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	/// let q2 = Quaternion::from_axis_angle([0.0, 1.0, 0.0], 90.0);
 	/// let q3 = q1 / q2;
 	/// ```
 
-	pub fn quotient(self, other: Quaternion) -> Quaternion {
+	pub fn quotient(self, other: Quaternion<F>) -> Quaternion<F> {
 		self * other.inverse()
 	}
 
@@ -271,14 +310,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///
 	/// let norm = q1.norm();
 	/// ```
 
-	pub fn norm(&self) -> f32 {
+	pub fn norm(&self) -> F {
 		(self.w * self.w + self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
 	}
 
@@ -289,14 +328,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///
 	/// let norm = q1.normalize();
 	/// ```
 
-	pub fn normalize(&self) -> Quaternion {
+	pub fn normalize(&self) -> Quaternion<F> {
 		let n = self.norm();
 		Quaternion {
 			w: self.w / n,
@@ -313,14 +352,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///
 	/// let inverse = q1.inverse();
 	/// ```
 
-	pub fn inverse(&self) -> Quaternion {
+	pub fn inverse(&self) -> Quaternion<F> {
 		self.conjugate() / (self.norm() * self.norm())
 	}
 
@@ -331,14 +370,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///
 	/// let exp = q1.exp();
 	/// ```
 
-	pub fn exp(&self) -> Quaternion {
+	pub fn exp(&self) -> Quaternion<F> {
 		let n = self.norm();
 		let c = n.cos();
 		let s = n.sin();
@@ -358,14 +397,14 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///
 	/// let log = q1.log();
 	/// ```
 
-	pub fn log(&self) -> Quaternion {
+	pub fn log(&self) -> Quaternion<F> {
 		let n = self.norm();
 		let c = n.ln();
 		let q = self.normalize();
@@ -384,15 +423,15 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///
 	/// let q2 = q1.pow(2.0);
 	/// ```
 
-	pub fn pow(self, n: f32) -> Quaternion {
-		self.exp() * self.pow(n - 1.0)
+	pub fn pow(self, n: F) -> Quaternion<F> {
+		self.exp() * self.pow(n - F::from(1.0).unwrap())
 	}
 
 	/// Quarternion rotation is defined as:
@@ -402,7 +441,7 @@ impl Quaternion {
 	/// # Examples
 	///
 	/// ```
-	/// use rustg::quaternion::Quaternion;
+	/// use math3D::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///
@@ -411,51 +450,51 @@ impl Quaternion {
 	/// let rotated = q1.rotate(v1);
 	/// ```
 
-	pub fn rotate(&self, other: Quaternion) -> Quaternion {
+	pub fn rotate(&self, other: Quaternion<F>) -> Quaternion<F> {
 		self.exp() * other * self.inverse()
 	}
 }
 
-impl core::fmt::Display for Quaternion {
+impl<F: Float> core::fmt::Display for Quaternion<F> {
 	fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-		write!(f, "( w: {}, x: {}, y: {}, z: {} )", self.w, self.x, self.y, self.z)
+		write!(f, "( w: {}, x: {}, y: {}, z: {} )", self.w.to_f64().unwrap(), self.x.to_f64().unwrap(), self.y.to_f64().unwrap(), self.z.to_f64().unwrap())
 	}
 }
 
-impl std::cmp::PartialEq for Quaternion {
-	fn eq(&self, other: &Quaternion) -> bool {
+impl<F: Float> std::cmp::PartialEq for Quaternion<F> {
+	fn eq(&self, other: &Quaternion<F>) -> bool {
 		self.w == other.w && self.x == other.x && self.y == other.y && self.z == other.z
 	}
 }
 
-impl std::ops::Add for Quaternion {
-	type Output = Quaternion;
+impl<F: Float> std::ops::Add for Quaternion<F> {
+	type Output = Quaternion<F>;
 
-	fn add(self, other: Quaternion) -> Quaternion {
+	fn add(self, other: Quaternion<F>) -> Quaternion<F> {
 		self.sum(other)
 	}
 }
 
-impl std::ops::Sub for Quaternion {
-	type Output = Quaternion;
+impl<F: Float> std::ops::Sub for Quaternion<F> {
+	type Output = Quaternion<F>;
 
-	fn sub(self, other: Quaternion) -> Quaternion {
+	fn sub(self, other: Quaternion<F>) -> Quaternion<F> {
 		self.difference(other)
 	}
 }
 
-impl std::ops::Mul for Quaternion {
-	type Output = Quaternion;
+impl<F: Float> std::ops::Mul for Quaternion<F> {
+	type Output = Quaternion<F>;
 
-	fn mul(self, other: Quaternion) -> Quaternion {
+	fn mul(self, other: Quaternion<F>) -> Quaternion<F> {
 		self.product(other)
 	}
 }
 
-impl std::ops::Mul<f32> for Quaternion {
-	type Output = Quaternion;
+impl<F: Float> std::ops::Mul<F> for Quaternion<F> {
+	type Output = Quaternion<F>;
 
-	fn mul(self, other: f32) -> Quaternion {
+	fn mul(self, other: F) -> Quaternion<F> {
 		Quaternion {
 			w: self.w * other,
 			x: self.x * other,
@@ -465,18 +504,18 @@ impl std::ops::Mul<f32> for Quaternion {
 	}
 }
 
-impl std::ops::Div for Quaternion {
-	type Output = Quaternion;
+impl<F: Float> std::ops::Div for Quaternion<F> {
+	type Output = Quaternion<F>;
 
-	fn div(self, other: Quaternion) -> Quaternion {
+	fn div(self, other: Quaternion<F>) -> Quaternion<F> {
 		self.quotient(other)
 	}
 }
 
-impl std::ops::Div<f32> for Quaternion {
-	type Output = Quaternion;
+impl<F: Float> std::ops::Div<F> for Quaternion<F> {
+	type Output = Quaternion<F>;
 
-	fn div(self, other: f32) -> Quaternion {
+	fn div(self, other: F) -> Quaternion<F> {
 		Quaternion {
 			w: self.w / other,
 			x: self.x / other,
