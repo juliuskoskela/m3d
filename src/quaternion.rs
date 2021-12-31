@@ -135,7 +135,7 @@ impl Quaternion {
 
 	/// Quarternion addition is defined as:
 	///
-	/// q1 + q2 = (q1.w + q2.w) + (q1.x + q2.x)i + (q1.y + q2.y)j + (q1.z + q2.z)k
+	/// $q1 + q2 = (q1.w + q2.w) + (q1.x + q2.x)i + (q1.y + q2.y)j + (q1.z + q2.z)k$
 	///
 	/// # Arguments
 	///
@@ -162,7 +162,7 @@ impl Quaternion {
 
 	/// Quarternion subtraction is defined as:
 	///
-	/// q1 - q2 = (q1.w - q2.w) + (q1.x - q2.x)i + (q1.y - q2.y)j + (q1.z - q2.z)k
+	/// $q1 - q2 = (q1.w - q2.w) + (q1.x - q2.x)i + (q1.y - q2.y)j + (q1.z - q2.z)k$
 	///
 	/// # Arguments
 	///
@@ -266,7 +266,7 @@ impl Quaternion {
 
 	/// Quarternion norm is defined as:
 	///
-	/// q1.norm = sqrt(q1.w^2 + q1.x^2 + q1.y^2 + q1.z^2)
+	/// $q.norm = \sqrt{q.w^2 + q.x^2 + q.y^2 + q.z^2}$
 	///
 	/// # Examples
 	///
@@ -284,7 +284,7 @@ impl Quaternion {
 
 	/// Quarternion normalization is defined as:
 	///
-	/// q1.normalize = q1 / q1.norm
+	/// $q1.normalize = q1 / q1.norm$
 	///
 	/// # Examples
 	///
