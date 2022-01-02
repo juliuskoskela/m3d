@@ -3,6 +3,7 @@ pub mod vectors;
 pub mod quaternion;
 pub mod matrices;
 pub mod points;
+pub mod camera;
 
 #[cfg(test)]
 mod tests {

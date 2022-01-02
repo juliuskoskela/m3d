@@ -1,6 +1,7 @@
 use num::Float;
 use crate::quaternion::Quaternion;
 use crate::vectors::Vector3;
+use crate::vectors::Vector4;
 
 pub struct Point3<F: Float> {
 	xyz: Vector3<F>,
@@ -27,6 +28,22 @@ impl<F :Float> Point3<F> {
 	pub fn new(x: F, y: F, z: F) -> Point3<F> {
 		Point3 {
 			xyz: Vector3::new(x, y, z),
+		}
+	}
+
+	/// Identity point.
+	///
+	/// # Example
+	///
+	/// ```
+	/// use math3d::points::Point3;
+	///
+	/// let point = Point3::identity();
+	/// ```
+
+	pub fn identity() -> Point3<F> {
+		Point3 {
+			xyz: Vector3::identity(),
 		}
 	}
 
@@ -64,6 +81,26 @@ impl<F :Float> Point3<F> {
 
 	pub fn to_vector(&self) -> Vector3<F> {
 		self.xyz
+	}
+
+	/// To vector4.
+	///
+	/// # Example
+	///
+	/// ```
+	/// use math3d::points::Point3;
+	///
+	/// let point = Point3::new(1.0, 2.0, 3.0);
+	/// let vector = point.to_vector4();
+	///
+	/// assert!(vector[0] == 1.0);
+	/// assert!(vector[1] == 2.0);
+	/// assert!(vector[2] == 3.0);
+	/// assert!(vector[3] == 1.0);
+	/// ```
+
+	pub fn to_vector4(&self) -> Vector4<F> {
+		Vector4::new(self.xyz[0], self.xyz[1], self.xyz[2], F::one())
 	}
 
 	/// Distance to another point.
@@ -141,5 +178,11 @@ impl<F: Float> std::ops::Index<usize> for Point3<F> {
 
 	fn index(&self, index: usize) -> &F {
 		&self.xyz[index]
+	}
+}
+
+impl<F: Float> std::ops::IndexMut<usize> for Point3<F> {
+	fn index_mut(&mut self, index: usize) -> &mut F {
+		&mut self.xyz[index]
 	}
 }

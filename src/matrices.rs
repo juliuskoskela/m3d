@@ -837,6 +837,52 @@ impl<F: Float> Matrix4<F> {
 		}
 		m
 	}
+
+	/// Multiply 4x4 matrix by 4x1 vector.
+	///
+	/// ```
+	/// use math3d::matrices::Matrix4;
+	///
+	/// let m = Matrix4::identity();
+	///
+	/// let v = m * Vector4::new(1.0, 2.0, 3.0, 4.0);
+	///
+	/// assert!(v == Vector4::new(1.0, 2.0, 3.0, 4.0));
+	/// ```
+
+	pub fn product_vector(&self, other: Vector4<F>) -> Vector4<F> {
+		let mut v = Vector4::zero();
+
+		for i in 0..4 {
+			for j in 0..4 {
+				v[i] = v[i] + self[i][j] * other[j];
+			}
+		}
+		v
+	}
+
+	/// Transpose 4x4 matrix.
+	///
+	/// ```
+	/// use math3d::matrices::Matrix4;
+	///
+	/// let m = Matrix4::identity();
+	///
+	/// let m_t = m.transpose();
+	///
+	/// assert!(m_t == m);
+	/// ```
+
+	pub fn transpose(&self) -> Matrix4<F> {
+		let mut m = Matrix4::zero();
+
+		for i in 0..4 {
+			for j in 0..4 {
+				m[i][j] = self[j][i];
+			}
+		}
+		m
+	}
 }
 
 impl<F: Float> core::fmt::Display for Matrix4<F> {
