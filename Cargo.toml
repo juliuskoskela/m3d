@@ -1,9 +1,16 @@
 [package]
 name = "m3d"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
+readme = "README.md"
+license = "MIT/Apache-2.0"
+authors = [ "juliuskoskela" ]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "3D linear algebra"
+documentation = "https://docs.rs/m3d/"
+repository = "https://github.com/juliuskoskela/m3d"
+keywords = ["mathematics", "graphics", "3D"]
+categories = ["mathematics"]
 
 [build]
 rustflags = "-C target-cpu=native"
@@ -12,6 +19,7 @@ rustflags = "-C target-cpu=native"
 num = "0.1.40"
 rayon = "1.5.1"
 sdl2 = "0.35"
+
 [dev-dependencies]
 rand = "0.8.4"
 criterion = "0.3"
