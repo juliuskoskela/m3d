@@ -1,4 +1,4 @@
-use math3d::vectors::Vector3;
+use m3d::vectors::Vector3;
 
 #[cfg(test)]
 

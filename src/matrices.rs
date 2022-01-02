@@ -5,7 +5,7 @@
 //! ## Example
 //!
 //! ```
-//! use math3d::matrices::Matrix;
+//! use m3d::matrices::Matrix;
 //!
 //! let matrix = Matrix::identity();
 //!
@@ -30,7 +30,7 @@ pub struct Matrix3<F: Float> {
 impl<F: Float> Matrix3<F> {
     /// Create a new matrix from 9 values.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::new(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
     ///
@@ -60,7 +60,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Identity matrix.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::identity();
     ///
@@ -76,7 +76,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Create a matrix from 3 vectors.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_vectors(
     /// 	Vector3::new(1.0, 2.0, 3.0),
@@ -101,7 +101,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Create a matrix from [F; 9] array.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
     ///
@@ -129,7 +129,7 @@ impl<F: Float> Matrix3<F> {
     /// Convert a matrix to [F; 9] array.
     ///
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
     /// let arr = m.to_array();
@@ -155,7 +155,7 @@ impl<F: Float> Matrix3<F> {
     /// Slice at index.
     ///
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
     ///
@@ -171,7 +171,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Create a matrix from [[F; 3]; 3] array.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array_2d([
     /// 	[1.0, 2.0, 3.0],
@@ -191,7 +191,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Decompose tha matrix into a [[F; 3]; 3] array.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array_2d([
     /// 	[1.0, 2.0, 3.0],
@@ -222,7 +222,7 @@ impl<F: Float> Matrix3<F> {
     /// To [f63; 9] array.
     ///
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
     /// let arr = m.to_array_f64();
@@ -248,7 +248,7 @@ impl<F: Float> Matrix3<F> {
     /// To [f32; 9] array.
     ///
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
     /// let arr = m.to_array_f32();
@@ -273,7 +273,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Multiply two matrices.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m1 = Matrix3::from_array_2d([
     /// 	[1.0, 2.0, 3.0],
@@ -311,7 +311,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Multiply matrix by scalar.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array_2d([
     /// 	[1.0, 2.0, 3.0],
@@ -334,7 +334,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Divide matrix by a matrix.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m1 = Matrix3::from_array_2d([
     /// 	[1.0, 2.0, 3.0],
@@ -372,7 +372,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Divide matrix by scalar.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::<f32>::from_array_2d([
     /// 	[1.0, 2.0, 3.0],
@@ -395,7 +395,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Transpose matrix.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array_2d([
     /// 	[1.0, 2.0, 3.0],
@@ -427,7 +427,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Get determinant of matrix.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array_2d([
     /// 	[1.0, 2.0, 3.0],
@@ -449,7 +449,7 @@ impl<F: Float> Matrix3<F> {
 
     /// Get inverse of matrix.
     /// ```
-    /// use math3d::matrices::Matrix3;
+    /// use m3d::matrices::Matrix3;
     ///
     /// let m = Matrix3::from_array_2d([
     /// 	[1.0, 2.0, 3.0],
@@ -575,7 +575,7 @@ impl<F: Float> Matrix4<F> {
     /// New 4x4 matrix from 16 values.
     ///
     /// ```
-    /// use math3d::matrices::Matrix4;
+    /// use m3d::matrices::Matrix4;
     ///
     /// let m = Matrix4::new(
     /// 	1.0, 2.0, 3.0, 4.0,
@@ -618,7 +618,7 @@ impl<F: Float> Matrix4<F> {
     /// New 4x4 identity matrix.
     ///
     /// ```
-    /// use math3d::matrices::Matrix4;
+    /// use m3d::matrices::Matrix4;
     ///
     /// let m = Matrix4::identity();
     ///
@@ -640,7 +640,7 @@ impl<F: Float> Matrix4<F> {
 	/// New 4x4 zero matrix.
 	///
 	/// ```
-	/// use math3d::matrices::Matrix4;
+	/// use m3d::matrices::Matrix4;
 	///
 	/// let m = Matrix4::zero();
 	///
@@ -662,7 +662,7 @@ impl<F: Float> Matrix4<F> {
     /// New 4x4 matrix from array of 4 vectors.
     ///
     /// ```
-    /// use math3d::matrices::Matrix4;
+    /// use m3d::matrices::Matrix4;
     ///
     /// let m = Matrix4::from_vectors(
     /// 	Vector4::new(1.0, 2.0, 3.0, 4.0),
@@ -688,7 +688,7 @@ impl<F: Float> Matrix4<F> {
     /// New 4x4 matrix from array of 16 values.
     ///
     /// ```
-    /// use math3d::matrices::Matrix4;
+    /// use m3d::matrices::Matrix4;
     ///
     /// let m = Matrix4::from_array([
     /// 	1.0, 2.0, 3.0, 4.0,
@@ -714,7 +714,7 @@ impl<F: Float> Matrix4<F> {
     /// Index into matrix.
     ///
     /// ```
-    /// use math3d::matrices::Matrix4;
+    /// use m3d::matrices::Matrix4;
     ///
     /// let m = Matrix4::identity();
     ///
@@ -730,7 +730,7 @@ impl<F: Float> Matrix4<F> {
     /// To array f32.
     ///
     /// ```
-    /// use math3d::matrices::Matrix4;
+    /// use m3d::matrices::Matrix4;
     ///
     /// let m = Matrix4::identity();
     ///
@@ -764,7 +764,7 @@ impl<F: Float> Matrix4<F> {
 	 /// To array f64
 	 ///
 	 /// ```
-	 /// use math3d::matrices::Matrix4;
+	 /// use m3d::matrices::Matrix4;
 	 ///
 	 /// let m = Matrix4::identity();
 	 ///
@@ -798,7 +798,7 @@ impl<F: Float> Matrix4<F> {
 	/// To array of vectors.
 	///
 	/// ```
-	/// use math3d::matrices::Matrix4;
+	/// use m3d::matrices::Matrix4;
 	///
 	/// let m = Matrix4::identity();
 	///
@@ -815,7 +815,7 @@ impl<F: Float> Matrix4<F> {
 	/// Multiply 4x4 matrix by 4x4 matrix.
 	///
 	/// ```
-	/// use math3d::matrices::Matrix4;
+	/// use m3d::matrices::Matrix4;
 	///
 	/// let m1 = Matrix4::identity();
 	/// let m2 = Matrix4::identity();

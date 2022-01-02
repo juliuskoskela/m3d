@@ -1,9 +1,9 @@
 use criterion::Throughput;
 use criterion::{criterion_group, criterion_main, BenchmarkId, Criterion};
-use math3d::points::Point3;
-use math3d::vectors::Vector3;
-use math3d::matrices::Matrix3;
-use math3d::quaternion::Quaternion;
+use m3d::points::Point3;
+use m3d::vectors::Vector3;
+use m3d::matrices::Matrix3;
+use m3d::quaternion::Quaternion;
 use rayon::prelude::*;
 use rand::prelude::*;
 

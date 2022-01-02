@@ -46,7 +46,7 @@ impl<F: Float> Vector3<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v = Vector3::from_array([1.0, 2.0, 3.0]);
 	/// ```
@@ -60,7 +60,7 @@ impl<F: Float> Vector3<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let vector = Vector3::new(1.0, 2.0, 3.0);
 	/// let (x, y, z) = vector.decompose();
@@ -79,7 +79,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vector::Vector3;
+	/// use m3d::vector::Vector3;
 	///
 	/// let v = Vector3::new(1.0, 2.0, 3.0);
 	/// assert_eq!(v.x(), 1.0);
@@ -94,7 +94,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vector::Vector3;
+	/// use m3d::vector::Vector3;
 	///
 	/// let v = Vector3::new(1.0, 2.0, 3.0);
 	/// assert_eq!(v.y(), 2.0);
@@ -109,7 +109,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vector::Vector3;
+	/// use m3d::vector::Vector3;
 	///
 	/// let v = Vector3::new(1.0, 2.0, 3.0);
 	/// assert_eq!(v.z(), 3.0);
@@ -126,7 +126,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	/// let v2 = Vector3::new(4.0, 5.0, 6.0);
@@ -147,7 +147,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	///
@@ -167,7 +167,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	/// let v2 = Vector3::new(4.0, 5.0, 6.0);
@@ -188,7 +188,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	///
@@ -208,7 +208,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	/// let v2 = Vector3::new(4.0, 5.0, 6.0);
@@ -233,7 +233,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	///
@@ -253,7 +253,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	/// let v2 = Vector3::new(4.0, 5.0, 6.0);
@@ -279,7 +279,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	/// let v2 = Vector3::new(4.0, 5.0, 6.0);
@@ -304,7 +304,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	///
@@ -323,7 +323,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vector::Vector3;
+	/// use m3d::vector::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	///
@@ -341,7 +341,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vector::Vector3;
+	/// use m3d::vector::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	/// let v2 = Vector3::new(4.0, 5.0, 6.0);
@@ -366,7 +366,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 0.0, 0.0);
 	///
@@ -384,7 +384,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	///
@@ -405,7 +405,7 @@ impl<F: Float> Vector3<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector3;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
 	///
@@ -545,7 +545,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	///
@@ -563,7 +563,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new_from_vector3(Vector3::new(1.0, 2.0, 3.0), 4.0);
 	///
@@ -581,7 +581,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::zero();
 	///
@@ -599,7 +599,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::identity();
 	///
@@ -617,7 +617,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	/// let v2 = Vector4::new(5.0, 6.0, 7.0, 8.0);
@@ -638,7 +638,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	///
@@ -658,7 +658,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	/// let v2 = Vector4::new(5.0, 6.0, 7.0, 8.0);
@@ -679,7 +679,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	///
@@ -699,7 +699,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	/// let v2 = Vector4::new(5.0, 6.0, 7.0, 8.0);
@@ -719,7 +719,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	///
@@ -739,11 +739,11 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	///
-	/// let m1 = math3d::matrices::Matrix4::identity();
+	/// let m1 = m3d::matrices::Matrix4::identity();
 	///
 	/// let v2 = v1.product_matrix(m1);
 	///
@@ -766,7 +766,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	/// let v2 = Vector4::new(2.0, 2.0, 3.0, 4.0);
@@ -786,7 +786,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	///
@@ -806,7 +806,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	///
@@ -825,7 +825,7 @@ impl<F: Float> Vector4<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::vectors::Vector4;
+	/// use m3d::vectors::Vector4;
 	///
 	/// let v1 = Vector4::new(1.0, 2.0, 3.0, 4.0);
 	///

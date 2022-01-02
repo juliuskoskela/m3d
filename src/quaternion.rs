@@ -6,7 +6,7 @@
 //! # Example
 //!
 //! ```
-//! use math3d::quaternion::Quaternion;
+//! use m3d::quaternion::Quaternion;
 //!
 //! let q1 = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 //! let q2 = Quaternion::new(5.0, [6.0, 7.0, 8.0]);
@@ -27,7 +27,7 @@ use crate::matrices::Matrix4;
 /// # Example
 ///
 /// ```
-/// use math3d::quaternion::Quaternion;
+/// use m3d::quaternion::Quaternion;
 ///
 /// let q = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 /// ```
@@ -52,7 +52,7 @@ impl<F: Float> Quaternion<F> {
     /// # Example
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
     /// ```
@@ -69,7 +69,7 @@ impl<F: Float> Quaternion<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::quaternion::Quaternion;
+	/// use m3d::quaternion::Quaternion;
 	///
 	/// let q = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 	///
@@ -85,7 +85,7 @@ impl<F: Float> Quaternion<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::quaternion::Quaternion;
+	/// use m3d::quaternion::Quaternion;
 	///
 	/// let q = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 	///
@@ -101,8 +101,8 @@ impl<F: Float> Quaternion<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::quaternion::Quaternion;
-	/// use math3d::vectors::Vector3;
+	/// use m3d::quaternion::Quaternion;
+	/// use m3d::vectors::Vector3;
 	///
 	/// let q = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 	///
@@ -121,7 +121,7 @@ impl<F: Float> Quaternion<F> {
     /// # Example
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 	///
@@ -142,7 +142,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q = Quaternion::<f32>::identity();
     /// let (r, [x, y, z]) = q.get();
@@ -169,7 +169,7 @@ impl<F: Float> Quaternion<F> {
     /// # Example
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     /// ```
@@ -194,7 +194,7 @@ impl<F: Float> Quaternion<F> {
     /// # Example
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q = Quaternion::from_euler_angles(90.0, 0.0, 0.0);
     /// ```
@@ -237,7 +237,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     /// let q2 = Quaternion::from_axis_angle([0.0, 1.0, 0.0], 90.0);
@@ -266,7 +266,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     /// let q2 = Quaternion::from_axis_angle([0.0, 1.0, 0.0], 90.0);
@@ -293,7 +293,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     /// let q2 = q1.conjugate();
@@ -321,7 +321,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     /// let q2 = Quaternion::from_axis_angle([0.0, 1.0, 0.0], 90.0);
@@ -353,7 +353,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     /// let q2 = Quaternion::from_axis_angle([0.0, 1.0, 0.0], 90.0);
@@ -387,7 +387,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     ///
@@ -405,7 +405,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     ///
@@ -427,7 +427,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     ///
@@ -445,7 +445,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     ///
@@ -470,7 +470,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     ///
@@ -494,7 +494,7 @@ impl<F: Float> Quaternion<F> {
     /// # Examples
     ///
     /// ```
-    /// use math3d::quaternion::Quaternion;
+    /// use m3d::quaternion::Quaternion;
     ///
     /// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
     ///
@@ -512,7 +512,7 @@ impl<F: Float> Quaternion<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::quaternion::Quaternion;
+	/// use m3d::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///
@@ -538,7 +538,7 @@ impl<F: Float> Quaternion<F> {
 	/// # Examples
 	///
 	/// ```
-	/// use math3d::quaternion::Quaternion;
+	/// use m3d::quaternion::Quaternion;
 	///
 	/// let q1 = Quaternion::from_axis_angle([1.0, 0.0, 0.0], 90.0);
 	///

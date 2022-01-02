@@ -19,7 +19,7 @@ impl<F :Float> Point3<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::points::Point3;
+	/// use m3d::points::Point3;
 	///
 	/// let point = Point3::new(1.0, 2.0, 3.0);
 	/// ```
@@ -39,7 +39,7 @@ impl<F :Float> Point3<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::points::Point3;
+	/// use m3d::points::Point3;
 	///
 	/// let vector = Vector3::new(1.0, 2.0, 3.0);
 	/// let point = Point3::from_vector(vector);
@@ -56,7 +56,7 @@ impl<F :Float> Point3<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::points::Point3;
+	/// use m3d::points::Point3;
 	///
 	/// let point = Point3::new(1.0, 2.0, 3.0);
 	/// let vector = point.to_vector();
@@ -75,7 +75,7 @@ impl<F :Float> Point3<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::points::Point3;
+	/// use m3d::points::Point3;
 	///
 	/// let point = Point3::new(1.0, 2.0, 3.0);
 	/// let other = Point3::new(4.0, 5.0, 6.0);
@@ -98,7 +98,7 @@ impl<F :Float> Point3<F> {
 	/// # Example
 	///
 	/// ```
-	/// use math3d::points::Point3;
+	/// use m3d::points::Point3;
 	///
 	/// let point = Point3::new(1.0, 2.0, 3.0);
 	/// let rotated_point = point.rotate_euler(90.0, 90.0, 90.0);

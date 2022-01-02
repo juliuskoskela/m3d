@@ -1,5 +1,5 @@
-use math3d::quaternion::Quaternion;
-use math3d::vectors::Vector3;
+use m3d::quaternion::Quaternion;
+use m3d::vectors::Vector3;
 
 // Create unit tests for Quarternion
 #[cfg(test)]

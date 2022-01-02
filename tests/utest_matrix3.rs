@@ -1,4 +1,4 @@
-use math3d::matrices::Matrix3;
+use m3d::matrices::Matrix3;
 
 #[cfg(test)]
 
