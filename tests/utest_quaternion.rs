@@ -1,5 +1,5 @@
-use crate::quaternion::Quaternion;
-use crate::vectors::Vector3;
+use math3d::quaternion::Quaternion;
+use math3d::vectors::Vector3;
 
 // Create unit tests for Quarternion
 #[cfg(test)]
@@ -19,10 +19,24 @@ fn test_quaternion_identity() {
 }
 
 #[test]
+fn test_quaternion_from_axis_angle() {
+	let q1 = Quaternion::from_axis_angle(Vector3::from_array([1.0, 0.0, 0.0]), 90.0);
+	let expected = Quaternion::new(0.7071067811865476, [0.7071067811865475, 0.0, 0.0]);
+	assert!(q1 == expected);
+}
+
+#[test]
+fn test_quaternion_from_euler() {
+	let q1 = Quaternion::from_euler_angles(90.0, 0.0, 0.0);
+	let expected = Quaternion::new(0.7071067811865476, [0.7071067811865475, 0.0, 0.0]);
+	assert!(q1 == expected);
+}
+
+#[test]
 fn test_quaternion_product() {
 	let q1 = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 	let q2 = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
-	let expected = Quaternion::new(1.0, [4.0, 6.0, 8.0]);
+	let expected = Quaternion::new(-28.0, [4.0, 6.0, 8.0]);
 	let q3 = q1 * q2;
 	assert!(q3 == expected);
 }
@@ -50,6 +64,7 @@ fn test_quaternion_sum() {
 	let q2 = Quaternion::new(1.0, [2.0, 3.0, 4.0]);
 	let expected = Quaternion::new(2.0, [4.0, 6.0, 8.0]);
 	let q3 = q1 + q2;
+	println!("{}", q3);
 	assert!(q3 == expected);
 }
 
@@ -72,9 +87,5 @@ fn test_quaternion_exp() {
 
 #[test]
 fn test_quaternion_rotate_vector() {
-	let q1 = Quaternion::new(0.0, [0.0, 1.0, 0.0]);
-	let v1 = Vector3::new(0.0, 1.0, 0.0);
-	let v2 = q1.rotate_vector(v1);
-	println!("{}", v2);
+	todo!();
 }
-

@@ -1,12 +1,11 @@
+//!
 pub mod vectors;
 pub mod quaternion;
-
+pub mod matrices;
 pub mod points;
-pub mod utest_quaternion;
 
 #[cfg(test)]
 mod tests {
-	use crate::vectors::Vector3;
 	use crate::quaternion::Quaternion;
 
 	#[test]
