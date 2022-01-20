@@ -4,6 +4,7 @@
 
 use num::Float;
 use crate::matrices::Matrix3;
+use serde_derive::{Deserialize, Serialize};
 
 // //////////////////////////////////////////////////////////////////////////////////////
 //
@@ -11,30 +12,39 @@ use crate::matrices::Matrix3;
 //
 // //////////////////////////////////////////////////////////////////////////////////////
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug, Serialize, Deserialize)]
 pub struct Vector3<F: Float> {
-    v: [F; 3],
+	x: F,
+	y: F,
+	z: F,
 }
 
 impl<F: Float> Vector3<F> {
 
 	/// Constructor for Vector3 from a list of 3 values.
     pub fn new(x: F, y: F, z: F) -> Vector3<F> {
-        Vector3 { v: [x, y, z] }
+		Vector3 {
+			x,
+			y,
+			z,
+		}
     }
 
 	/// Construct a zero vector.
 	pub fn zero() -> Vector3<F> {
-		Vector3 { v: [F::zero(), F::zero(), F::zero()] }
+		Vector3 {
+			x: F::zero(),
+			y: F::zero(),
+			z: F::zero(),
+		}
 	}
 
 	pub fn identity() -> Vector3<F> {
-		Vector3 { v: [F::one(), F::zero(), F::zero()] }
-	}
-
-	/// As slice.
-	pub fn as_slice(&self) -> &[F; 3] {
-		&self.v
+		Vector3 {
+			x: F::one(),
+			y: F::zero(),
+			z: F::zero(),
+		}
 	}
 
     /// From array.
@@ -52,7 +62,11 @@ impl<F: Float> Vector3<F> {
 	/// ```
 
 	pub fn from_array(v: [F; 3]) -> Vector3<F> {
-		Vector3 { v }
+		Vector3 {
+			x: v[0],
+			y: v[1],
+			z: v[2],
+		}
 	}
 
 	/// Decompose the vector into a tuple of 3 values.
@@ -71,7 +85,7 @@ impl<F: Float> Vector3<F> {
 	/// ```
 
 	pub fn decompose(&self) -> (F, F, F) {
-		(self.v[0], self.v[1], self.v[2])
+		(self.x, self.y, self.z)
 	}
 
 	/// Get the value of x component.
@@ -86,7 +100,7 @@ impl<F: Float> Vector3<F> {
 	/// ```
 
     pub fn x(&self) -> &F {
-        &self.v[0]
+		&self.x
     }
 
 	/// Get the value of y component.
@@ -101,7 +115,7 @@ impl<F: Float> Vector3<F> {
 	/// ```
 
     pub fn y(&self) -> &F {
-        &self.v[1]
+		&self.y
     }
 
 	/// Get the value of z component.
@@ -116,7 +130,7 @@ impl<F: Float> Vector3<F> {
 	/// ```
 
     pub fn z(&self) -> &F {
-        &self.v[2]
+		&self.z
     }
 
 	/// Sum of two vectors is defined as:
@@ -136,7 +150,9 @@ impl<F: Float> Vector3<F> {
 
 	pub fn sum(&self, other: Vector3<F>) -> Vector3<F> {
 		Vector3 {
-			v: [self.v[0] + other.v[0], self.v[1] + other.v[1], self.v[2] + other.v[2]],
+			x: self.x + other.x,
+			y: self.y + other.y,
+			z: self.z + other.z,
 		}
 	}
 
@@ -156,7 +172,9 @@ impl<F: Float> Vector3<F> {
 
 	pub fn sum_scalar(&self, scalar: F) -> Vector3<F> {
 		Vector3 {
-			v: [self.v[0] + scalar, self.v[1] + scalar, self.v[2] + scalar],
+			x: self.x + scalar,
+			y: self.y + scalar,
+			z: self.z + scalar,
 		}
 	}
 
@@ -177,7 +195,9 @@ impl<F: Float> Vector3<F> {
 
 	pub fn difference(&self, other: Vector3<F>) -> Vector3<F> {
 		Vector3 {
-			v: [self.v[0] - other.v[0], self.v[1] - other.v[1], self.v[2] - other.v[2]],
+			x: self.x - other.x,
+			y: self.y - other.y,
+			z: self.z - other.z,
 		}
 	}
 
@@ -197,7 +217,9 @@ impl<F: Float> Vector3<F> {
 
 	pub fn difference_scalar(&self, scalar: F) -> Vector3<F> {
 		Vector3 {
-			v: [self.v[0] - scalar, self.v[1] - scalar, self.v[2] - scalar],
+			x: self.x - scalar,
+			y: self.y - scalar,
+			z: self.z - scalar,
 		}
 	}
 
@@ -218,11 +240,9 @@ impl<F: Float> Vector3<F> {
 
     pub fn product(&self, other: Vector3<F>) -> Vector3<F> {
         Vector3 {
-            v: [
-                self.v[0] * other.v[0],
-                self.v[1] * other.v[1],
-                self.v[2] * other.v[2],
-            ],
+			x: self.x * other.x,
+			y: self.y * other.y,
+			z: self.z * other.z,
         }
     }
 
@@ -242,7 +262,9 @@ impl<F: Float> Vector3<F> {
 
     pub fn product_scalar(&self, s: F) -> Vector3<F> {
         Vector3 {
-            v: [self.v[0] * s, self.v[1] * s, self.v[2] * s],
+			x: self.x * s,
+			y: self.y * s,
+			z: self.z * s,
         }
     }
 
@@ -289,11 +311,9 @@ impl<F: Float> Vector3<F> {
 
     pub fn quotient(&self, other: Vector3<F>) -> Vector3<F> {
         Vector3 {
-            v: [
-                self.v[0] / other.v[0],
-                self.v[1] / other.v[1],
-                self.v[2] / other.v[2],
-            ],
+			x: self.x / other.x,
+			y: self.y / other.y,
+			z: self.z / other.z,
         }
     }
 
@@ -312,7 +332,9 @@ impl<F: Float> Vector3<F> {
 
 	pub fn quotient_scalar(&self, s: F) -> Vector3<F> {
 		Vector3 {
-			v: [self.v[0] / s, self.v[1] / s, self.v[2] / s],
+			x: self.x / s,
+			y: self.y / s,
+			z: self.z / s,
 		}
 	}
 
@@ -331,12 +353,12 @@ impl<F: Float> Vector3<F> {
 	/// ```
 
     pub fn dot(&self, other: Vector3<F>) -> F {
-		self.v[0] * other.v[0] + self.v[1] * other.v[1] + self.v[2] * other.v[2]
+		self.x * other.x + self.y * other.y + self.z * other.z
     }
 
-	/// The cross product of two vectors is defined as:
+	/// Cross product of two vectors is defined as:
 	///
-	/// $$\vec{a} \times \vec{b} = \left(\begin{array}{c} a_y \cdot b_z - a_z \cdot b_y \\ a_z \cdot b_x - a_x \cdot b_z \\ a_x \cdot b_y - a_y \cdot b_x \end{array}\right)$$
+	/// $$\vec{a} \times \vec{b} = \left(\begin{array}{c} a_y \times b_z - a_z \times b_y \\ a_z \times b_x - a_x \times b_z \\ a_x \times b_y - a_y \times b_x \end{array}\right)$$
 	///
 	/// # Examples
 	///
@@ -344,20 +366,17 @@ impl<F: Float> Vector3<F> {
 	/// use math3d::vector::Vector3;
 	///
 	/// let v1 = Vector3::new(1.0, 2.0, 3.0);
-	/// let v2 = Vector3::new(4.0, 5.0, 6.0);
 	///
-	/// assert_eq!(v1.cross(&v2), Vector3::new(-3.0, 6.0, -3.0));
+	/// assert_eq!(v1.cross(Vector3::new(4.0, 5.0, 6.0)), Vector3::new(-3.0, 6.0, -3.0));
 	/// ```
 
-    pub fn cross(&self, other: Vector3<F>) -> Vector3<F> {
-        Vector3 {
-            v: [
-                self.v[1] * other.v[2] - self.v[2] * other.v[1],
-                self.v[2] * other.v[0] - self.v[0] * other.v[2],
-                self.v[0] * other.v[1] - self.v[1] * other.v[0],
-            ],
-        }
-    }
+	pub fn cross(&self, other: Vector3<F>) -> Vector3<F> {
+		Vector3 {
+			x: self.y * other.z - self.z * other.y,
+			y: self.z * other.x - self.x * other.z,
+			z: self.x * other.y - self.y * other.x,
+		}
+	}
 
 	/// The magnitude of a vector is defined as:
 	///
@@ -374,7 +393,7 @@ impl<F: Float> Vector3<F> {
 	/// ```
 
 	pub fn magnitude(&self) -> F {
-		(self.v[0] * self.v[0] + self.v[1] * self.v[1] + self.v[2] * self.v[2]).sqrt()
+		(self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
 	}
 
 	/// The normalized vector is defined as:
@@ -394,7 +413,9 @@ impl<F: Float> Vector3<F> {
 	pub fn normalized(&self) -> Vector3<F> {
 		let mag = self.magnitude();
 		Vector3 {
-			v: [self.v[0] / mag, self.v[1] / mag, self.v[2] / mag],
+			x: self.x / mag,
+			y: self.y / mag,
+			z: self.z / mag,
 		}
 	}
 
@@ -414,20 +435,22 @@ impl<F: Float> Vector3<F> {
 
 	pub fn opposite(&self) -> Vector3<F> {
 		Vector3 {
-			v: [self.v[0].neg(), self.v[1].neg(), self.v[2].neg()],
+			x: -self.x,
+			y: -self.y,
+			z: -self.z,
 		}
 	}
 }
 
 impl<F: Float> core::fmt::Display for Vector3<F> {
 	fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-		write!(f, "[{:.4}, {:.4}, {:.4}]", self.v[0].to_f64().unwrap(), self.v[1].to_f64().unwrap(), self.v[2].to_f64().unwrap())
+		write!(f, "[{:.4}, {:.4}, {:.4}]", self.x().to_f64().unwrap(), self.y().to_f64().unwrap(), self.z().to_f64().unwrap())
 	}
 }
 
 impl<F: Float> core::cmp::PartialEq for Vector3<F> {
 	fn eq(&self, other: &Vector3<F>) -> bool {
-		self.v[0] == other.v[0] && self.v[1] == other.v[1] && self.v[2] == other.v[2]
+		self.x == other.x && self.y == other.y && self.z == other.z
 	}
 }
 
@@ -515,13 +538,23 @@ impl<F: Float> std::ops::Index<usize> for Vector3<F> {
 	type Output = F;
 
 	fn index(&self, index: usize) -> &F {
-		&self.v[index]
+		match index {
+			0 => &self.x,
+			1 => &self.y,
+			2 => &self.z,
+			_ => panic!("Index out of bounds"),
+		}
 	}
 }
 
 impl<F: Float> std::ops::IndexMut<usize> for Vector3<F> {
 	fn index_mut(&mut self, index: usize) -> &mut F {
-		&mut self.v[index]
+		match index {
+			0 => &mut self.x,
+			1 => &mut self.y,
+			2 => &mut self.z,
+			_ => panic!("Index out of bounds"),
+		}
 	}
 }
 
@@ -572,7 +605,7 @@ impl<F: Float> Vector4<F> {
 
 	pub fn new_from_vector3(v: Vector3<F>, w: F) -> Vector4<F> {
 		Vector4 {
-			v: [v.v[0], v.v[1], v.v[2], w],
+			v: [v.x, v.y, v.z, w],
 		}
 	}
 

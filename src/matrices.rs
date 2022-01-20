@@ -13,6 +13,7 @@
 //! ```
 
 use num::Float;
+use serde_derive::{Deserialize, Serialize};
 
 // //////////////////////////////////////////////////////////////////////////////////////
 //
@@ -22,7 +23,7 @@ use num::Float;
 
 use crate::vectors::Vector3;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Deserialize, Serialize)]
 pub struct Matrix3<F: Float> {
     m: [Vector3<F>; 3],
 }

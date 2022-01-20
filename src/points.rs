@@ -2,7 +2,9 @@ use num::Float;
 use crate::quaternion::Quaternion;
 use crate::vectors::Vector3;
 use crate::vectors::Vector4;
+use serde_derive::{Deserialize, Serialize};
 
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Point3<F: Float> {
 	xyz: Vector3<F>,
 }
